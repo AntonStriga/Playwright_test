@@ -1,10 +1,10 @@
-import { Locator, Page } from "@playwright/test"
+import { Page } from "@playwright/test"
 
 export class MainPage {
-    private page: Page
-    private locator: Locator    
-    readonly cardsArea: Locator
-    readonly bookStoreApp: Locator
+    private page
+    private locator    
+    readonly cardsArea
+    readonly bookStoreApp
     constructor(page: Page) {
         this.page = page
         this.locator = page.locator('[id="app"]')
@@ -15,7 +15,6 @@ export class MainPage {
     async goto() {
         await this.page.goto("https://demoqa.com/")
     }
-
     async openBookStore() {
         await this.bookStoreApp.click()
     }

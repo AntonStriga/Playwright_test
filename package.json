@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/AntonStriga/Playwright_test#readme",
   "devDependencies": {
-    "@playwright/test": "^1.32.2"
+    "@playwright/test": "^1.32.2",
+    "typescript": "^5.0.4"
   }
 }

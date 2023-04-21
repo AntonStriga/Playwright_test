@@ -1,10 +1,10 @@
-import { Locator, Page } from "@playwright/test"
+import { Page } from "@playwright/test"
 
 export class LoginPage {
-    private locator: Locator
-    readonly userNameInput: Locator
-    readonly passwordInput: Locator
-    readonly loginButton: Locator
+    private locator
+    readonly userNameInput
+    readonly passwordInput
+    readonly loginButton
     constructor(page: Page) {
         this.locator = page.locator('.login-wrapper')
         this.userNameInput = this.locator.locator('[id="userName"]')

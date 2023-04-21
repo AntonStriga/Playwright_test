@@ -1,8 +1,8 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 
 export class ProfilePage {
-    private locator: Locator
-    readonly mainHeader: Locator
+    private locator
+    readonly mainHeader
 
     constructor(page: Page) {
         this.locator = page.locator('.profile-wrapper')

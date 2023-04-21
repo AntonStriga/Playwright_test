@@ -8,15 +8,15 @@ const enum BOOK_STORE {
 }
 
 export class LeftPanel {
-    private locator: Locator    
-    readonly accordion: Locator
+    private locator    
+    readonly accordion
     readonly bookStoreApp: ElementGroup
     constructor(page: Page) {
         this.locator = page.locator('.left-pannel')
         this.accordion = this.locator.locator('.accordion')
         this.bookStoreApp = new ElementGroup(this.accordion.locator('.element-group:nth-child(6)'))
-    }
- 
+    } 
+
     async expandBookStore() {
         await this.bookStoreApp.expandGroup()
     }
@@ -26,9 +26,9 @@ export class LeftPanel {
 }
 
 class ElementGroup {
-    private locator: Locator
-    readonly groupHeader: Locator
-    readonly expandButton: Locator
+    private locator
+    readonly groupHeader
+    readonly expandButton
     readonly elementList: ElementList
     constructor(locator: Locator) {
         this.locator = locator
@@ -43,8 +43,8 @@ class ElementGroup {
 }
 
 class ElementList {
-    private locator: Locator
-    readonly elementItem: Locator
+    private locator
+    readonly elementItem
 
     constructor(locator: Locator) {
         this.locator = locator.locator('.element-list')
