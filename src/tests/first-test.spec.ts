@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/pageFixtures";
+import { test, expect } from "../fixtures/pageFixtures.js";
 
 test.describe('first suite', () => {
     test('first test', async ({

@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test"
+import { step } from "../helpers/helpers.js"
 
 const enum BOOK_STORE {
     LoginPage = 0,
@@ -20,6 +21,7 @@ export class LeftPanel {
     async expandBookStore() {
         await this.bookStoreApp.expandGroup()
     }
+    @step()
     async openLoginPage() {
         await this.bookStoreApp.elementList.openItemById(BOOK_STORE.LoginPage)
     }

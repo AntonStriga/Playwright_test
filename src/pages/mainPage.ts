@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test"
+import { step } from "../helpers/helpers.js"
 
 export class MainPage {
     private page
@@ -15,6 +16,7 @@ export class MainPage {
     async goto() {
         await this.page.goto("https://demoqa.com/")
     }
+    @step()
     async openBookStore() {
         await this.bookStoreApp.click()
     }

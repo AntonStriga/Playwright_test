@@ -2,8 +2,11 @@
   "name": "playwright_test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "main": "build/index.js",
+  "scripts": {
+    "pretest": "tsc --incremental -p tsconfig.json",
+    "test": "npx playwright test -c build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AntonStriga/Playwright_test.git"
@@ -18,5 +21,6 @@
   "devDependencies": {
     "@playwright/test": "^1.32.2",
     "typescript": "^5.0.4"
-  }
+  },
+  "type": "module"
 }
