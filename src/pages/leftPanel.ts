@@ -18,6 +18,7 @@ export class LeftPanel {
         this.bookStoreApp = new ElementGroup(this.accordion.locator('.element-group:nth-child(6)'))
     } 
 
+    @step()
     async expandBookStore() {
         await this.bookStoreApp.expandGroup()
     }
@@ -39,6 +40,7 @@ class ElementGroup {
         this.elementList = new ElementList(this.locator)
     }
 
+    @step()
     async expandGroup() {
         this.expandButton.click()
     }
@@ -53,6 +55,7 @@ class ElementList {
         this.elementItem = this.locator.locator('.btn')
     }
 
+    @step()
     async openItemById(num: number) {
         await this.locator.locator(`[id="item-${num}"]`).click()
     }

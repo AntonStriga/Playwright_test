@@ -4,8 +4,8 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "pretest": "tsc --incremental -p tsconfig.json",
-    "test": "npx playwright test -c build"
+    "pretest": "npx tsc",
+    "test": "npx playwright test"
   },
   "repository": {
     "type": "git",
