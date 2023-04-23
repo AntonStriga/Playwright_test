@@ -8,5 +8,4 @@ export class BookStorePage {
         this.locator = page.locator('.books-wrapper')
     }
  
-
 }

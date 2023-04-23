@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/pageFixtures";
+import { test, expect } from "../fixtures/pageFixtures.js";
 
 test.describe('first suite', () => {
     test('first test', async ({
@@ -17,6 +17,6 @@ test.describe('first suite', () => {
         await mainPage.openBookStore()
         await leftPanel.openLoginPage()
         await loginPage.login('test_qa', 'P@ssw0rd')
-        await expect(profilePage.mainHeader, 'Check Profile text is shown').toHaveText('Profile')
+        await expect(profilePage.mainHeader, 'Expect: Check Profile text is shown').toHaveText('Profile')
     })
 })

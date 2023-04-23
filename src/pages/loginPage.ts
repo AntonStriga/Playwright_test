@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test"
+import { step } from "../helpers/helpers.js"
 
 export class LoginPage {
     private locator
@@ -12,6 +13,7 @@ export class LoginPage {
         this.loginButton = this.locator.locator('[id="login"]')
     }
 
+    @step()
     async login(userName: string, password: string) {
         await this.userNameInput.fill(userName)
         await this.passwordInput.fill(password)

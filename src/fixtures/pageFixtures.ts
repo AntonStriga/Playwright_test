@@ -1,8 +1,8 @@
 import { test as base } from '@playwright/test';
-import { LeftPanel } from '../pages/leftPanel';
-import { LoginPage } from '../pages/loginPage';
-import { MainPage } from '../pages/mainPage';
-import { ProfilePage } from '../pages/profilePage';
+import { LeftPanel } from '../pages/leftPanel.js';
+import { LoginPage } from '../pages/loginPage.js';
+import { MainPage } from '../pages/mainPage.js';
+import { ProfilePage } from '../pages/profilePage.js';
 
 type MyFixtures = {
     mainPage: MainPage
