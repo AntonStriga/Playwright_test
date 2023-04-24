@@ -2,18 +2,24 @@
 
 Framework:
 1. Test Logic layer:
-    @playwright/test
+
+    	@playwright/test
 
 2. Test Implementation layer:
-    Language: TypeScript
-    Design patterns: Page Object, Builder, Decorator
-    Locators: @playwright/test - page.locator()
-    Assertions: @playwright/test - expect(locator)
+
+    	Language: TypeScript
+    
+    	Design patterns: Page Object, Builder, Decorator
+    
+    	Locators: @playwright/test - page.locator()
+    
+    	Assertions: @playwright/test - expect(locator)
 
 3. Test Data layer
 
 4. Test Runner
-    npx playwright test
+
+    	npx playwright test
 
 5. Test Reporter
 
@@ -22,12 +28,15 @@ Framework:
 7. Services
 
 8. Test Configuration
-    playwright.config.ts 
+
+    	playwright.config.ts 
 
 9. Dependency manager: 
-	npm
+
+		npm
 
 10. Version control: 
-    GitHub
+
+    	GitHub
 
 11. Build tool: 
