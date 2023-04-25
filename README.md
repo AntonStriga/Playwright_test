@@ -17,6 +17,8 @@ Framework:
 
 3. Test Data layer
 
+		testData folder
+
 4. Test Runner
 
     	npx playwright test
