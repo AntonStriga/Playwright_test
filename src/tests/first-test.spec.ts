@@ -32,4 +32,15 @@ test.describe('first suite', () => {
             await expect(loginPage.errorMessage, '').toHaveText(loginPageUiElements.loginError)            
         }        
     })
+    test('Login fields mandatory', async ({
+        mainPage,
+        leftPanel,
+        loginPage,
+    }) => {
+        await mainPage.openBookStore()
+        await leftPanel.openLoginPage()
+        await loginPage.login("", "")
+        expect(await loginPage.userNameInput.getAttribute('class'), '').toContain('is-invalid')
+        expect(await loginPage.passwordInput.getAttribute('class'), '').toContain('is-invalid')
+    })
 })
