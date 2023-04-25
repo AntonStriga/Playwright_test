@@ -12,6 +12,8 @@ export class LoginPage {
     readonly additionalHeader
     readonly userNameLable
     readonly passwordLable
+    readonly errorArea
+    readonly errorMessage
     constructor(page: Page) {
         this.locator = page.locator('.login-wrapper')
         this.mainHeader = page.locator('.main-header')
@@ -23,6 +25,8 @@ export class LoginPage {
         this.additionalHeader = this.locator.locator('h5')
         this.userNameLable = this.locator.locator('[id="userName-label"]')
         this.passwordLable = this.locator.locator('[id="password-label"]')
+        this.errorArea = this.locator.locator('[id="output"]')
+        this.errorMessage = this.errorArea.locator('[id="name"]')
     }
 
     @step()

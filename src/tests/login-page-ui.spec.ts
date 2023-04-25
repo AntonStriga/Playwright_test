@@ -1,5 +1,5 @@
 import { test, expect } from "../fixtures/pageFixtures.js";
-import { loginPageUiElements } from "../testData/loginPageUiElements.js";
+import { loginPageUiElements } from "../testData/loginPageData.js";
 
 test.describe('Login page ui tests', () => {
     test('Checking headers texts', async ({
