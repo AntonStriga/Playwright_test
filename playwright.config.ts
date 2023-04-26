@@ -20,7 +20,14 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [    
+    // ['list'],                    // List reporter prints a line for each test being run.     
+    // ['line'],                    // Line reporter uses a single line to report last finished test, and prints failures when they occur    
+    // ['dot'],                     // Dot reporter only produces a single character per successful test run. It is the default on CI.
+    // ['json', { outputFile: 'test-results/results.json'}],
+    // ['junit', { outputFile: 'test-results/results.xml' }],
+    ['html', {open: 'on-failure'}]
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
