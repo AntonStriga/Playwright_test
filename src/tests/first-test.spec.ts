@@ -43,4 +43,15 @@ test.describe('first suite', () => {
         expect(await loginPage.userNameInput.getAttribute('class'), '').toContain('is-invalid')
         expect(await loginPage.passwordInput.getAttribute('class'), '').toContain('is-invalid')
     })
+    test('Failed-test. Valid login', async ({
+        mainPage,
+        leftPanel,
+        loginPage,
+        profilePage
+    }) => {
+        await mainPage.openBookStore()
+        await leftPanel.openLoginPage()
+        await loginPage.login(userCreds.login, "qqq")
+        await expect(profilePage.mainHeader, 'Expect: Check Profile text is shown').toHaveText('Profile')
+    })
 })
