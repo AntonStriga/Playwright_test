@@ -20,7 +20,7 @@
   "homepage": "https://github.com/AntonStriga/Playwright_test#readme",
   "devDependencies": {
     "@playwright/test": "^1.32.2",
+    "axios": "^1.4.0",
     "typescript": "^5.0.4"
-  },
-  "type": "module"
+  }
 }
