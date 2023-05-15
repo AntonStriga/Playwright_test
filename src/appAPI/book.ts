@@ -1,5 +1,5 @@
+import { userCreds } from "../testData/loginPageData.js";
 import { AppApi } from "./appApi.js"
-import axios, {AxiosRequestConfig} from "axios";
 
 export class Book {
     private _isbn: string
@@ -11,7 +11,7 @@ export class Book {
     private _pages: number = 0
     private _description: string
     private _website: string
-    // static api: AppApi
+    readonly api: AppApi
 
     constructor(isbn: string, title: string, subTitle: string, author: string, publish_date: string, publisher: string, pages = 0, description: string, website: string) {
         this._isbn = isbn
@@ -22,10 +22,9 @@ export class Book {
         this._publisher = publisher
         this._pages = pages
         this._description = description
-        this._website = website        
+        this._website = website
+        this.api = new AppApi(userCreds.login, userCreds.password)
     }
-
-    // api = new AppApi('Account/v1/GenerateToken', 'test_qa', 'P@ssw0rd')
 
     get isbn() {
         return this._isbn
@@ -54,11 +53,24 @@ export class Book {
     get website() {
         return this._website
     }
-    
-    // static async getBook() {
-    //     return this.api.books.get()
-    // }
-    static async getBooks() {
-        return (await axios.get('https://demoqa.com/BookStore/v1/Books')).data
+        
+    async getBook() {
+        return (await this.api.book.get<Book>({
+            url: this._isbn
+        }))
     }
+    async getBookById(bookId: string) {
+        return (await this.api.book.get<Book>({
+            url: bookId
+        }))
+    }
+    async deleteBook(userId: string) {
+        await this.api.book.delete({
+            data: {
+                "isbn": this._isbn,
+                "userId": userId
+            }
+        })
+    }
+
 }

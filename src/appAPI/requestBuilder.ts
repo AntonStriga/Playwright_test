@@ -1,4 +1,4 @@
-import axios, {AxiosRequestConfig, AxiosError, options } from "axios";
+import axios, {AxiosRequestConfig } from "axios";
 import { url } from "../testData/apiData";
 
 export const requestBuilder = (login: string, password: string) => {

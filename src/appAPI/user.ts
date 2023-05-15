@@ -1,6 +1,4 @@
-import axios from "axios"
 import { Book } from "./book.js"
-import { url } from "../testData/apiData.js"
 import { AppApi } from "./appApi.js"
 
 interface UserAccount {
@@ -56,8 +54,21 @@ export class User {
             url: this._userId
         })
     }
-    async isUserAutorized() {
-        return this.api.autorized.post<boolean>({
+    async addBooks(bookIds: string[]) {
+        await this.api.books.post({
+            data: {
+                "userId": this._userId,
+                "collectionOfIsbns": bookIds
+            }
+        }) 
+    }
+    async deleteBooks() {
+        await this.api.books.delete({
+            url: this._userId
+        }) 
+    }
+    async login() {
+        this.api.login.post({
             data: {
                 "userName": this._username, 
                 "password": this._password

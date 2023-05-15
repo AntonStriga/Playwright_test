@@ -3,15 +3,21 @@ import { LeftPanel } from '../pages/leftPanel.js';
 import { LoginPage } from '../pages/loginPage.js';
 import { MainPage } from '../pages/mainPage.js';
 import { ProfilePage } from '../pages/profilePage.js';
+import { User } from '../appAPI/user.js';
+import { userCreds } from '../testData/loginPageData.js';
 
 type MyFixtures = {
     mainPage: MainPage
     loginPage: LoginPage
     profilePage: ProfilePage
-    leftPanel: LeftPanel
+    leftPanel: LeftPanel    
 }
 
-export const test = base.extend<MyFixtures>({
+type MyObjects = {
+    mainUser: User
+}
+
+export const test = base.extend<MyFixtures & MyObjects>({
     mainPage: async ({page}, use) => {
         const mainPage = new MainPage(page)
         await mainPage.goto()
@@ -26,6 +32,11 @@ export const test = base.extend<MyFixtures>({
     leftPanel: async ({page}, use) => {
         await use(new LeftPanel(page))
     },
+    mainUser: async ({}, use) => {
+        const mainUser = new User(userCreds.login, userCreds.password)
+        mainUser.createUser()
+        await use(mainUser)
+    }
 })
 
 export { expect } from '@playwright/test'

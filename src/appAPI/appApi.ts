@@ -1,3 +1,5 @@
+import { userCreds } from "../testData/loginPageData.js"
+import { Book } from "./book.js"
 import { requestBuilder } from "./requestBuilder.js"
 
 export class AppApi {
@@ -19,4 +21,23 @@ export class AppApi {
     get autorized() {
         return this.appRequest('Account/v1/Authorized')
     }
+    get login() {
+        return this.appRequest('Account/v1/Login')
+    } 
+}
+
+export abstract class CommonApi {
+    static readonly api = new AppApi(userCreds.login, userCreds.password)
+        
+    static async isUserAutorized(username: string, password: string) {
+        return this.api.autorized.post<boolean>({
+            data: {
+                "userName": username, 
+                "password": password
+            }
+        })
+    }
+    static async getBooks() {
+        return this.api.books.get<Book[]>()
+    }    
 }
