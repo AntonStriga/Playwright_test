@@ -1,13 +1,13 @@
 import { CommonApi } from "../appAPI/appApi.js";
 import { User } from "../appAPI/user.js";
 import { test, expect } from "../fixtures/pageFixtures.js";
-import { getRandomInt } from "../helpers/helpers.js";
+import { getRandomInt, sleep } from "../helpers/helpers.js";
 
 test.describe('Tests with api', () => {
     test('Try user api', async ({}) => {
         const user = new User("test_qa1", "P@ssw0rd1")
-        await user.createUser()      
-        expect(await user.getUserById(), 'Expect: user created').toStrictEqual({
+        await user.create()      
+        expect(await user.getUser(), 'Expect: user created').toStrictEqual({
             "userId": user.userId,
             "username": user.userName,
             "books": user.books}
@@ -22,8 +22,15 @@ test.describe('Tests with api', () => {
         const secondBook = allBooks[getRandomInt(0, allBooks.length - 1)]
         
         await mainUser.addBooks([firstBook.isbn])
-        const res = (await mainUser.getUserById()).books
-        expect(res, '').toStrictEqual([firstBook])
+        let userBooks = (await mainUser.getUser()).books
+        expect(userBooks, "Expect: Check user's books list").toStrictEqual([firstBook])
+
+        await mainUser.addBooks([secondBook.isbn])
+        userBooks = (await mainUser.getUser()).books
+        expect(userBooks, "Expect: Check user's books list").toStrictEqual([firstBook, secondBook])
         
+        await mainUser.deleteBook(firstBook.isbn)
+        userBooks = (await mainUser.getUser()).books
+        expect(userBooks, "Expect: Check user's books list").toStrictEqual([secondBook])
     })
 })

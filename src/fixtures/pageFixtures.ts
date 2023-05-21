@@ -4,7 +4,7 @@ import { LoginPage } from '../pages/loginPage.js';
 import { MainPage } from '../pages/mainPage.js';
 import { ProfilePage } from '../pages/profilePage.js';
 import { User } from '../appAPI/user.js';
-import { mainUserCreds, userCreds } from '../testData/loginPageData.js';
+import { mainUserCreds } from '../testData/loginPageData.js';
 
 type MyFixtures = {
     mainPage: MainPage
@@ -34,7 +34,7 @@ export const test = base.extend<MyFixtures & MyObjects>({
     },
     mainUser: async ({}, use) => {
         const mainUser = new User(mainUserCreds.login, mainUserCreds.password)
-        await mainUser.createUser()
+        await mainUser.create()
         await use(mainUser)
         await mainUser.deleteUser()
     }

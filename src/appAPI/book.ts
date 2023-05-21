@@ -1,5 +1,3 @@
-import { userCreds } from "../testData/loginPageData.js";
-import { AppApi } from "./appApi.js"
 
 export class Book {
     private _isbn: string
@@ -11,7 +9,6 @@ export class Book {
     private _pages: number = 0
     private _description: string
     private _website: string
-    readonly api: AppApi
 
     constructor(isbn: string, title: string, subTitle: string, author: string, publish_date: string, publisher: string, pages = 0, description: string, website: string) {
         this._isbn = isbn
@@ -23,7 +20,6 @@ export class Book {
         this._pages = pages
         this._description = description
         this._website = website
-        this.api = new AppApi(userCreds.login, userCreds.password)
     }
 
     get isbn() {
@@ -53,24 +49,4 @@ export class Book {
     get website() {
         return this._website
     }
-        
-    async getBook() {
-        return (await this.api.book.get<Book>({
-            url: this._isbn
-        }))
-    }
-    async getBookById(bookId: string) {
-        return (await this.api.book.get<Book>({
-            url: bookId
-        }))
-    }
-    async deleteBook(userId: string) {
-        await this.api.book.delete({
-            data: {
-                "isbn": this._isbn,
-                "userId": userId
-            }
-        })
-    }
-
 }

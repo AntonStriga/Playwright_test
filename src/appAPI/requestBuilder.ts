@@ -1,15 +1,16 @@
 import axios, {AxiosRequestConfig } from "axios";
 import { url } from "../testData/apiData";
+import { User } from "./user";
 
-export const requestBuilder = (login: string, password: string) => {
+export const requestBuilder = () => {
     type methodType = 'get' | 'post' | 'put' | 'patch' | 'delete'
     const methods: methodType[] = ['get', 'post', 'put', 'patch', 'delete']
     return (baseUrl: string) => {
-        const requestObject: {[key: string]: <T>(config: AxiosRequestConfig) => Promise<T>} = {}
+        const requestObject: {[key: string]: <T>(config: AxiosRequestConfig, user?: User) => Promise<T>} = {}
         for (const method of methods){
-            requestObject[method] = async (config: AxiosRequestConfig = {})=>{
+            requestObject[method] = async (config: AxiosRequestConfig = {}, user?: User)=>{
                 try {
-                    const token = (await axios.post(url.tokenUrl, {"userName": login, "password": password})).data.token
+                    const token = (user) ? (await axios.post(url.tokenUrl, {"userName": user.userName, "password": user.userPassword})).data.token : ""
                     const res = (
                         await axios({
                             method: method,
@@ -31,7 +32,7 @@ export const requestBuilder = (login: string, password: string) => {
                 }                
             }
         }
-        return requestObject as {[key in methodType]: <T>(config?: AxiosRequestConfig) => Promise<T>};
+        return requestObject as {[key in methodType]: <T>(config?: AxiosRequestConfig, user?: User) => Promise<T>};
     }
 }
 

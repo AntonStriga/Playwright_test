@@ -1,12 +1,11 @@
-import { userCreds } from "../testData/loginPageData.js"
 import { Book } from "./book.js"
 import { requestBuilder } from "./requestBuilder.js"
 
 export class AppApi {
     private appRequest
 
-    constructor(login: string, password: string) {
-        this.appRequest = requestBuilder(login, password)
+    constructor() {
+        this.appRequest = requestBuilder()
     }
 
     get books() {
@@ -23,21 +22,26 @@ export class AppApi {
     }
     get login() {
         return this.appRequest('Account/v1/Login')
-    } 
+    }
 }
 
 export abstract class CommonApi {
-    static readonly api = new AppApi(userCreds.login, userCreds.password)
+    static readonly api = new AppApi()
         
-    static async isUserAutorized(username: string, password: string) {
+    static async isUserAutorized(userName: string, userPass: string) {
         return this.api.autorized.post<boolean>({
             data: {
-                "userName": username, 
-                "password": password
+                "userName": userName, 
+                "password": userPass
             }
         })
     }
     static async getBooks() {
         return this.api.books.get<{"books": Book[]}>()
-    }    
+    }
+    static async getBook(isbn: string) {
+        return this.api.book.get<Book>({
+            url: isbn
+        })
+    }
 }
