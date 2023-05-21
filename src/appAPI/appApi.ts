@@ -38,6 +38,6 @@ export abstract class CommonApi {
         })
     }
     static async getBooks() {
-        return this.api.books.get<Book[]>()
+        return this.api.books.get<{"books": Book[]}>()
     }    
 }

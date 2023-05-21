@@ -55,10 +55,11 @@ export class User {
         })
     }
     async addBooks(bookIds: string[]) {
+        const res = bookIds.map(el => {return {isbn: el}})
         await this.api.books.post({
             data: {
                 "userId": this._userId,
-                "collectionOfIsbns": bookIds
+                "collectionOfIsbns": res
             }
         }) 
     }
