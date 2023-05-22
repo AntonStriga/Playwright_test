@@ -23,6 +23,9 @@ export class AppApi {
     get login() {
         return this.appRequest('Account/v1/Login')
     }
+    get token() {
+        return this.appRequest('Account/v1/GenerateToken')
+    }
 }
 
 export abstract class CommonApi {
